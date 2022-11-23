@@ -28,14 +28,10 @@
     }
 
     &__edit {
-        // background   : #ECDFD2 url("../img/small/account__button-edit.svg") no-repeat center / 16px;
-        border-radius: 12px;
-        width        : 46px;
-        height       : 46px;
-        position     : absolute;
-        left         : calc(100% + 16px);
-        top          : calc(50% - 23px);
-        border       : none;
+        position: absolute;
+        left    : calc(100% + 16px);
+        top     : calc(50% - 23px);
+
     }
 }
 

@@ -2,13 +2,13 @@ import React from 'react'
 import { UiColors, UiElementSizes } from './types';
 
 interface ButtonProps {
-    children?: typeof React.Children
+    children?: React.ReactElement | string | number | Array<React.ReactElement | string | number>
     color?: UiColors
     variant?: 'fill' | 'light' | 'contur' | 'link' | 'white-bg'
     size?: UiElementSizes,
     icon?: Boolean,
     fab?: Boolean,
-    className?: React.ClassAttributes
+    className?: string
 }
 
 export const Button = ({
