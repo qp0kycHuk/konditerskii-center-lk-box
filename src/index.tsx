@@ -15,6 +15,6 @@ function loadHandler() {
 	ripple.attach('button.btn')
 	ripple.attach('.waved')
 	ripple.deAttach('.btn--link')
-	
+
 	ReactDOM.render(<App />, document.querySelector('#root'))
 }
