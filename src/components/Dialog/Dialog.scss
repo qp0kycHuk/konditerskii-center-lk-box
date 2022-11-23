@@ -1,0 +1,36 @@
+.dialog {
+    position      : fixed;
+    left          : 0;
+    top           : 0;
+    width         : 100%;
+    height        : 100%;
+    padding       : 15px;
+    z-index       : var(--zi-l6);
+    transition    : .25s ease;
+    overflow      : auto;
+    display       : flex;
+    flex-direction: column;
+
+    &:not(.active) {
+        opacity       : 0;
+        pointer-events: none;
+    }
+
+    &-shadow {
+        position  : fixed;
+        inset     : 0;
+        background: rgba(0, 0, 0, 0.5);
+
+    }
+
+    &-content {
+        margin    : auto;
+        transition: .25s ease;
+        position  : relative;
+        z-index   : 2;
+    }
+
+    &:not(.active) &-content {
+        transform: scale(.8);
+    }
+}

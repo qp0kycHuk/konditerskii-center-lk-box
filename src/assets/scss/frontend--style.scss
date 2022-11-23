@@ -1,0 +1,96 @@
+@import '../ui/scss/_variables.scss';
+@import '../ui/scss/_functions.scss';
+
+:root {
+	@include getColors(#873733, "primary");
+	@include getColors(#efa32f, "sec");
+	@include getColors(#0092E4, "blue");
+	@include getColors(#FF9820, "yellow");
+	@include getColors(#31A043, "green");
+	@include getColors(#EB5757, "red");
+	@include getColors(#828A99, "icon");
+	@include getColors(#333333, "text");
+
+	--bg1: #E9EAEC;
+	--bg2: #F8F8F8;
+	--bg3: #FFFFFF;
+
+	--spacing: 4px;
+
+	--radius-small : 4px;
+	--radius-middle: 8px;
+	--radius-large : 12px;
+
+	--media-lg: #{$lg};
+	--media-md: #{$md};
+	--media-sm: #{$sm};
+
+	--font-base: 'Open Sans', Arial, Helvetica, sans-serif;
+
+	--zi-l1: 321;
+	--zi-l2: 322;
+	--zi-l3: 323;
+	--zi-l4: 324;
+	--zi-l5: 325;
+	--zi-l6: 326;
+	--zi-l7: 327;
+	--zi-l8: 328;
+	--zi-l9: 329;
+}
+
+[data-theme="dark"] {
+	@include getColors(#ffffff, text);
+
+	--bg1: #181818;
+	--bg2: #282828;
+	--bg3: #323232;
+}
+
+body {
+	color         : var(--color-text);
+	min-height    : 100vh;
+	display       : flex;
+	flex-direction: column;
+	background    : var(--bg1);
+	background    : #fbefe3;
+
+	&[data-theme="dark"] {
+		background: var(--bg1);
+	}
+
+	* {
+		font-family: var(--font-base);
+	}
+
+}
+
+
+.active-enabled {
+	display: none !important;
+}
+
+.toggle-active,
+.tab-active,
+.active {
+	.active-disabled {
+		display: none !important;
+	}
+
+	.active-enabled {
+		display: flex !important;
+	}
+}
+
+.btn--fill .ripple {
+	background: radial-gradient(rgba(255, 255, 255, 0.1) 0,
+			rgba(255, 255, 255, 0.2) 40%,
+			rgba(255, 255, 255, 0.2) calc(60% - 10px),
+			rgba(255, 255, 255, 0.2) 60%,
+			rgba(0, 0, 0, 0) calc(60% + 10px));
+
+}
+
+
+.set-page {
+	padding-bottom: 200px;
+}

@@ -1,0 +1,44 @@
+.set-info-item {
+    display           : grid;
+    grid-template-rows: 22px 1fr;
+    grid-gap          : 8px;
+
+    &__print-toggle {
+        position: absolute;
+        left    : 4px;
+        top     : 4px;
+        z-index : 2;
+    }
+
+    @media(hover) {
+        &__print-toggle {
+            opacity: 0;
+        }
+
+        &:hover &__print-toggle {
+            opacity: 1;
+        }
+    }
+
+    &:hover &__print-toggle {
+        opacity: 1;
+    }
+
+    &__remove {
+        position: absolute;
+        top     : 4px;
+        right   : 4px;
+        --size  : 28px;
+    }
+
+    @media(hover) {
+        &__remove {
+            opacity: 0;
+        }
+
+        &:hover &__remove {
+            opacity: 1;
+        }
+    }
+
+}

@@ -1,0 +1,34 @@
+.set-contact {
+    margin-bottom: 32px;
+    background   : var(--bg3);
+    overflow     : hidden;
+    width        : 100%;
+
+    &-top {
+        background     : linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 100%), var(--color-primary);
+        padding        : 15px 24px;
+        font-weight    : bold;
+        font-size      : 22px;
+        display        : flex;
+        align-items    : center;
+        justify-content: space-between;
+        cursor         : pointer;
+        color          : #fff;
+    }
+
+
+    &-content {
+        transition: .3s ease;
+    }
+
+    &-form {
+        padding: 24px 24px 32px;
+
+        &__group {
+            display              : grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-gap             : 12px;
+        }
+    }
+
+}
