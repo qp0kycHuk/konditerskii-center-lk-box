@@ -8,15 +8,32 @@ import { SetItem } from './components/SetItem/SetItem'
 import { ThemeProvider } from './hooks/use-theme'
 import { Button } from './ui/Button'
 import { ISet } from './models/ISet'
+import { ISetItem } from './models/ISetItem'
+import { fakeSetItem } from './service/fake'
 
-const set: ISet = {
-	id: 1,
+const currentSet: ISet = {
+	id: '1',
 	image: 'img/test.jpg',
 	title: 'Туба с Ёлкой',
 	weight: 125,
 	purchasePrice: 1000,
 	comment: 'Комментарий',
+	items: new Array(5).fill(1).map(fakeSetItem)
 }
+
+
+// const setItems: ISetItem[] = [
+// 	{
+// 		id: '1',
+// 		image: 'img/test.jpg',
+// 		title: 'Тебе и Мне 1',
+// 		weight: 6,
+// 		purchasePrice: 15,
+// 		comment: 'Комментарий',
+// 		count: 1,
+// 		structure: 'Состав'
+// 	},
+// ]
 
 export const App = () => {
 
@@ -28,18 +45,23 @@ export const App = () => {
 			</Header>
 
 			<section className="set-page">
-				<div className="text-h1 text--demibold mb-10">Туба с Ёлкой</div>
+				<div className="text-h1 text--demibold mb-10">{currentSet.title}</div>
 
 				<ContactForm />
 
-				<SetInfo />
+				<SetInfo item={currentSet} />
 
 				<div className="mb-5"></div>
 
-				<SetItem
-					color='sec'
-					showCross={true}
-					onCrossClick={() => console.log('onCrossClick!')} />
+				{currentSet.items.map((el) => (
+					<SetItem
+						key={el.id}
+						item={el}
+						color='sec'
+						showCross={true}
+						onCrossClick={() => console.log('onCrossClick!')} />
+				))}
+
 
 				<SetResult />
 			</section>
