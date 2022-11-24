@@ -1,8 +1,7 @@
-import React from 'react'
+import React, { RefAttributes } from 'react'
 import { UiColors, UiElementSizes } from './types';
 
-interface ButtonProps {
-    children?: React.ReactElement | string | number | Array<React.ReactElement | string | number>
+interface IButtonProps extends React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
     color?: UiColors
     variant?: 'fill' | 'light' | 'contur' | 'link' | 'white-bg'
     size?: UiElementSizes,
@@ -20,7 +19,7 @@ export const Button = ({
     fab,
     className,
     ...props
-}: ButtonProps) => {
+}: IButtonProps) => {
 
 
     const btnClassName = [

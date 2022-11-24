@@ -2,8 +2,13 @@ import React, { useEffect, useRef, useState } from "react";
 import ReactDOM from 'react-dom';
 import './Dialog.scss';
 
-export function Dialog({ isOpen, options, children, onClose }) {
-    const $content = useRef()
+interface IDialogProps extends React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLElement>, HTMLElement> {
+    isOpen: boolean
+    onClose: () => void
+}
+
+export function Dialog({ isOpen, children, onClose }: IDialogProps) {
+    const $content = useRef<HTMLDivElement>(null)
 
     useEffect(() => {
         if (isOpen) {
@@ -12,7 +17,9 @@ export function Dialog({ isOpen, options, children, onClose }) {
             close()
         }
 
-        return () => document.body.style.overflow = ''
+        return () => {
+            document.body.style.overflow = ''
+        }
     }, [isOpen])
 
 

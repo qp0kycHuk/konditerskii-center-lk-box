@@ -2,7 +2,11 @@ import React, { useEffect, useState } from 'react'
 import { Button } from '../../ui/Button';
 import './Header.scss';
 
-export const Header = ({ children }) => {
+interface IHeaderProps extends React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLElement>, HTMLElement> {
+
+}
+
+export const Header = ({ children }: IHeaderProps) => {
     return (
         <header className="header">
             <div className="header-left flex flex-align-center">
@@ -11,9 +15,9 @@ export const Header = ({ children }) => {
                 </div>
                 <div className="text--bold text--uppercase">КОНСТРУКТОР НАБОРОВ</div>
             </div>
-            
-            { children }
-            
+
+            {children}
+
             <div className="flex flex-align-center pr-5">
                 <div className="image image--box image--round mr-3" style={{ width: 55 }}>
                     <img src="img/test.jpg" alt="" />

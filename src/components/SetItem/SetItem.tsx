@@ -1,10 +1,27 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { useDropdown } from '../../hooks/use-dropdown'
+import { ISetComponent } from '../../models/ISetComponent'
+import { ISetItem } from '../../models/ISetItem'
 import { Button } from '../../ui/Button'
+import { UiColors } from '../../ui/types'
 
 import './SetItem.scss'
 
+interface IProps {
+    item: ISetItem 
+    color?: UiColors
+    showCross?: boolean
+    showPlus?: boolean
+    showCheck?: boolean
+    onCrossClick?: (arg: any) => any
+    onPlusClick?: (arg: any) => any
+    onCheckClick?: (arg: any) => any
+    showCounter?: boolean
+    bordered?: boolean
+}
+
 export const SetItem = ({
+    item,
     color = 'primary',
     showCross = false,
     showPlus = false,
@@ -12,19 +29,16 @@ export const SetItem = ({
     onCrossClick,
     onPlusClick,
     onCheckClick,
-
     showCounter = true,
-
-    bordered = false
-
-}) => {
+    bordered = false,
+}: IProps) => {
 
     const content = useRef(null)
 
     const { isOpen, toggle, styleHeight } = useDropdown(content)
 
     return (
-        <div className={`set-item card ${bordered ? 'card--bordered' : ''} set-item--added set-item--canremove`}>
+        <div className={`set-item card ${bordered ? 'card--bordered' : ''} mb-4`}>
             <div className="set-item-preview print-wrapper">
                 <div className="set-item__left">
                     {showCross ? (
@@ -44,16 +58,16 @@ export const SetItem = ({
                     ) : null}
                 </div>
                 <div className="set-item-img">
-                    <div className={`set-item__weight bg-${color}`}>6 г</div>
-                    <img src="img/test.jpg" alt="" />
+                    <div className={`set-item__weight bg-${color}`}>{item.weight} г</div>
+                    <img src={item.image} alt="" />
                 </div>
-                <div className="set-item-name text-body-0 text--bold">Тебе и Мне</div>
+                <div className="set-item-name text-body-0 text--bold">{item.title}</div>
                 {showCounter ? (
                     <div className="set-item-counter">
                         <div className="set-item-counter__title">Кол-во шт.</div>
                         <div className="set-item-counter__block">
                             <button className="set-item-counter__btn set-item-counter__minus btn">-</button>
-                            <input type="number" className="set-item-counter__input -count-" />
+                            <input type="number" className="set-item-counter__input -count-" defaultValue={item.count} />
                             <button className="set-item-counter__btn set-item-counter__plus btn">+</button>
                         </div>
                     </div>
@@ -68,7 +82,7 @@ export const SetItem = ({
                     <div className="divider"></div>
                     <div className="set-item-propertie__value -clk-price-">2.61</div>
                 </div>
-                <div className="set-item-desc"> <b>Комментарий:</b> <br /> <b>Состав</b> </div>
+                <div className="set-item-desc"> <b>Комментарий:</b> {item.comment} <br /> <b>Состав</b> {item.structure} </div>
                 <Button className="set-item-toggle" variant='light' fab onClick={() => toggle()}>
                     <svg className="icon" style={{ transform: isOpen ? 'rotateZ(-90deg)' : '' }}><use xlinkHref="img/icons.svg#to-right" /></svg>
                 </Button>
@@ -79,7 +93,7 @@ export const SetItem = ({
                     <div className="set-item-content__inner">
                         <label className="set-item-content__desc mb-5">
                             <b>Название:</b>
-                            <textarea></textarea>
+                            <textarea defaultValue={item.title}></textarea>
                         </label>
                         <div className="set-item__settings mb-5">
                             <div className="set-item-propertie">
@@ -105,11 +119,11 @@ export const SetItem = ({
                         </div>
                         <label className="set-item-content__desc mb-5">
                             <b>Комментарий:</b>
-                            <textarea></textarea>
+                            <textarea defaultValue={item.comment}></textarea>
                         </label>
                         <label className="set-item-content__desc mb-5">
                             <b>Состав:</b>
-                            <textarea></textarea>
+                            <textarea defaultValue={item.structure}></textarea>
                         </label>
                         <div className="flex">
                             <Button>Сохранить</Button>

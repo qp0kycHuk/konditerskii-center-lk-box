@@ -4,10 +4,15 @@ import './SetInfo.scss';
 import { Button } from '../../ui/Button';
 import { Dialog } from '../Dialog/Dialog';
 import { SetInfoAdd } from './SetInfoAdd';
-import { SetInfoEdit } from './SetInfoEdit';
+import { SetEdit } from '../SetEdit/SetEdit';
 import { useDialog } from '../../hooks/use-dialog';
+import { ISet } from '../../models/ISet';
 
-export const SetInfo = () => {
+interface IProps {
+    item: ISet
+}
+
+export const SetInfo = ({ item }: IProps) => {
     const [addDialogOpened, showAddDialog, closeAddDialog] = useDialog(false)
     const [editDialogOpened, showEditDialog, closeEditDialog] = useDialog(false)
 
@@ -18,22 +23,22 @@ export const SetInfo = () => {
             <div className="set-info__left">
                 <div className="set-info-block">
                     <div className="set-info-block__img set-info-block__img_main">
-                        <img src="img/test.jpg" />
+                        <img src={item.image} />
                     </div>
                     <div className="set-info-block__props">
                         <div className="set-info-block__prop">
                             <div className="fade-60 text-small">Масса</div>
-                            <div className="text--demibold">194 гр</div>
+                            <div className="text--demibold">{item.weight} гр</div>
                         </div>
                         <div className="set-info-block__prop">
                             <div className="fade-60 text-small">Стоимость</div>
-                            <div className="text--demibold">243 руб</div>
+                            <div className="text--demibold">{item.purchasePrice} руб</div>
                         </div>
                     </div>
                 </div>
             </div>
             <div className="set-info__content">
-                <div className="text-h2 mb-8">Туба с Ёлкой</div>
+                <div className="text-h2 mb-8">{item.title}</div>
                 <div className="set-info-list">
 
                     <SetInfoItem />
@@ -61,7 +66,7 @@ export const SetInfo = () => {
         </Dialog>
 
         <Dialog isOpen={editDialogOpened} onClose={closeEditDialog}>
-            <SetInfoEdit />
+            <SetEdit item={item} />
         </Dialog>
     </>)
 }

@@ -1,10 +1,6 @@
+import { ICandy } from "./ICandy"
 
-export interface ISetItem {
-    id: any
-    title: string
-    weight: number
-    purchasePrice: number
-    image: string
-    comment: string
+export interface ISetItem extends ICandy {
+    count: number
 
 }

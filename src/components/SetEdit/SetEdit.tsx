@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from 'react'
+import { ISet } from '../../models/ISet';
 import { Button } from '../../ui/Button';
-import './SetInfoEdit.scss';
+import './SetEdit.scss';
 
-export const SetInfoEdit = () => {
+interface IProps {
+    item: ISet
+}
+
+export const SetEdit = ({ item }: IProps) => {
 
     return (
         <div className="card dialog-large">
@@ -22,7 +27,7 @@ export const SetInfoEdit = () => {
                                     <label className="form-field">
                                         <div className="text--demibold mb-2">Название позиции</div>
                                         <div className="form-input-cover">
-                                            <input type="text" className="form-input" placeholder="Поиск" />
+                                            <input type="text" className="form-input" placeholder="Поиск" defaultValue={item.title} />
                                         </div>
                                     </label>
                                 </div>
@@ -30,7 +35,7 @@ export const SetInfoEdit = () => {
                                     <label className="form-field">
                                         <div className="text--demibold mb-2">Масса 1-ой позиции, г.</div>
                                         <div className="form-input-cover">
-                                            <input type="text" className="form-input" placeholder="Поиск" />
+                                            <input type="text" className="form-input" placeholder="Поиск" defaultValue={item.weight} />
                                         </div>
                                     </label>
                                 </div>
@@ -38,7 +43,7 @@ export const SetInfoEdit = () => {
                                     <label className="form-field">
                                         <div className="text--demibold mb-2">Закупочная стоимость, руб</div>
                                         <div className="form-input-cover">
-                                            <input type="text" className="form-input" placeholder="Поиск" />
+                                            <input type="text" className="form-input" placeholder="Поиск" defaultValue={item.purchasePrice} />
                                         </div>
                                     </label>
                                 </div>
@@ -46,7 +51,7 @@ export const SetInfoEdit = () => {
                                     <label className="form-field">
                                         <div className="text--demibold mb-2">Комментарий</div>
                                         <div className="form-input-cover">
-                                            <textarea className="form-input"></textarea>
+                                            <textarea className="form-input" defaultValue={item.comment}></textarea>
                                         </div>
                                     </label>
                                 </div>

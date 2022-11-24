@@ -1,6 +1,6 @@
 
 export interface ISetComponent {
-    id: any
+    id: string
     title: string
     weight: number
     purchasePrice: number

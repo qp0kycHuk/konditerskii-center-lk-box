@@ -1,6 +1,6 @@
 import './App.scss';
 import React from 'react'
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 import { App } from './App'
 
 import ripple from 'npm-kit-ripple';
@@ -16,5 +16,7 @@ function loadHandler() {
 	ripple.attach('.waved')
 	ripple.deAttach('.btn--link')
 
-	ReactDOM.render(<App />, document.querySelector('#root'))
+	const root = ReactDOM.createRoot(document.querySelector('#root'))
+
+	root.render(<App />)
 }

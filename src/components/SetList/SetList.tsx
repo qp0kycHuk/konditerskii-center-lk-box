@@ -24,7 +24,7 @@ export const SetList = () => {
                         </div>
                     </div>
                 </form>
-                <div className="">
+                <div className="set-list-items">
                     <SetListItem></SetListItem>
                 </div>
             </div>
