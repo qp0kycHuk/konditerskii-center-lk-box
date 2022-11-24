@@ -1,9 +1,9 @@
 import React, { useEffect, useState, useRef } from 'react'
-import { useDropdown } from '../../hooks/use-dropdown'
-import { ISetComponent } from '../../models/ISetComponent'
-import { ISetItem } from '../../models/ISetItem'
-import { Button } from '../../ui/Button'
-import { UiColors } from '../../ui/types'
+import { useDropdown } from '@src/hooks/use-dropdown'
+import { ISetComponent } from '@src/models/ISetComponent'
+import { ISetItem } from '@src/models/ISetItem'
+import { Button } from '@components/ui/Button'
+import { UiColors } from '@components/ui/types'
 
 import './SetItem.scss'
 

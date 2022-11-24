@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react'
 import './ContactForm.scss';
-import { Button } from '../../ui/Button';
+import { Button } from '../ui/Button';
 import { useDropdown } from '../../hooks/use-dropdown';
 
 export const ContactForm = () => {

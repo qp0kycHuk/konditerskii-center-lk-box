@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { ISet } from '../../models/ISet';
-import { Button } from '../../ui/Button';
+import { ISet } from '@src/models/ISet';
+import { Button } from '@components/ui/Button';
 import './SetEdit.scss';
 
 interface IProps {

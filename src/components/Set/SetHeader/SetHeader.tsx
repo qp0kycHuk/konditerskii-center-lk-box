@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { useDialog } from '../../hooks/use-dialog';
-import { Button } from '../../ui/Button';
-import { Dialog } from '../Dialog/Dialog';
+import { useDialog } from '@src/hooks/use-dialog';
+import { Button } from '@components/ui/Button';
+import { Dialog } from '@components/Dialog/Dialog';
 import { SetList } from '../SetList/SetList';
 
 export const SetHeader = () => {

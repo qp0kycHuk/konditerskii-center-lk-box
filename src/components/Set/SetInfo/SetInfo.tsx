@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { SetInfoItem } from './SetInfoItem'
 import './SetInfo.scss';
-import { Button } from '../../ui/Button';
-import { Dialog } from '../Dialog/Dialog';
+import { Button } from '@components/ui/Button';
+import { Dialog } from '@components/Dialog/Dialog';
 import { SetInfoAdd } from './SetInfoAdd';
 import { SetEdit } from '../SetEdit/SetEdit';
-import { useDialog } from '../../hooks/use-dialog';
-import { ISet } from '../../models/ISet';
+import { useDialog } from '@src/hooks/use-dialog';
+import { ISet } from '@src/models/ISet';
 
 interface IProps {
     item: ISet

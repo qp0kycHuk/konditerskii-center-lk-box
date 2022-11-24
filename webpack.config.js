@@ -32,7 +32,8 @@ module.exports = {
   entry: './src/index.tsx',
   resolve: {
     alias: {
-      '@src': path.resolve(__dirname, 'src/')
+      '@src': path.resolve(__dirname, 'src/'),
+      '@components': path.resolve(__dirname, 'src/components/')
 
     },
     extensions: [".tsx", ".ts", ".js"],

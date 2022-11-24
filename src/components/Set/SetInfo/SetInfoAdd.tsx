@@ -1,15 +1,14 @@
-import React, { useEffect, useState, useRef } from 'react'
-import { Button } from '../../ui/Button'
+import React, { useEffect, useState } from 'react'
+import { Button } from '@components/ui/Button';
+import { SetItem } from '../SetItem/SetItem';
+import './SetInfoAdd.scss';
 
-import './SetList.scss'
-import { SetListItem } from './SetListItem'
-
-export const SetList = () => {
-
+export const SetInfoAdd = () => {
+ 
     return (
         <div className="card dialog-large">
             <div className="set-modal-top">
-                <div className="text-h1 text--center">Готовые наборы</div>
+                <div className="text-h1 text--center">Добавить</div>
             </div>
             <div className="p-8">
                 <form className="mb-5">
@@ -24,11 +23,15 @@ export const SetList = () => {
                         </div>
                     </div>
                 </form>
-                <div className="set-list-items">
-                    <SetListItem></SetListItem>
+                <div className="set-modal-items">
+                    <SetItem
+                        bordered
+                        showCounter={false}
+                        color='sec'
+                        showPlus={true}
+                        onPlusClick={() => console.log('onPlusClick!')} />
                 </div>
             </div>
         </div>
-
     )
 }

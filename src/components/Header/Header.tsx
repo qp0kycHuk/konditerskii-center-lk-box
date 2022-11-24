@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Button } from '../../ui/Button';
+import { Button } from '../ui/Button';
 import './Header.scss';
 
 interface IHeaderProps extends React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLElement>, HTMLElement> {
