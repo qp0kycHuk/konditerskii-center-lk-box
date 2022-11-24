@@ -1,4 +1,6 @@
-import React from 'react'
+import { useAppDispatch, useAppSelector } from '@src/hooks/redux'
+import { setSlice } from '@src/store/reducers/SetSlice'
+import React, { useEffect } from 'react'
 import { ISet } from '../../models/ISet'
 import { fakeSetItem } from '../../service/fake'
 import { ContactForm } from '../ContactForm/ContactForm'
@@ -9,7 +11,7 @@ import { SetItem } from './SetItem/SetItem'
 import { SetResult } from './SetResult/SetResult'
 
 
-const currentSet: ISet = {
+const initialSet: ISet = {
     id: '1',
     image: 'img/test.jpg',
     title: 'Туба с Ёлкой',
@@ -18,22 +20,20 @@ const currentSet: ISet = {
     comment: 'Комментарий',
     items: new Array(5).fill(1).map(fakeSetItem)
 }
+console.log(JSON.stringify(new Array(25).fill(1).map(fakeSetItem)));
 
-
-// const setItems: ISetItem[] = [
-// 	{
-// 		id: '1',
-// 		image: 'img/test.jpg',
-// 		title: 'Тебе и Мне 1',
-// 		weight: 6,
-// 		purchasePrice: 15,
-// 		comment: 'Комментарий',
-// 		count: 1,
-// 		structure: 'Состав'
-// 	},
-// ]
 
 export const SetPage = () => {
+    // Получаем данные из state
+    const { currentSet } = useAppSelector((state) => state.setReducer)
+    // Action creator для обновления текущего набора
+    const { initCurrentSet } = setSlice.actions
+    const dispatch = useAppDispatch()
+
+    useEffect(() => {
+        dispatch(initCurrentSet(initialSet))
+    }, [])
+
 
     return (<>
         <Header>
@@ -41,25 +41,29 @@ export const SetPage = () => {
         </Header>
 
         <section className="set-page">
-            <div className="text-h1 text--demibold mb-10">{currentSet.title}</div>
+            {currentSet ? (<>
+                <div className="text-h1 text--demibold mb-10">{currentSet.title}</div>
 
-            <ContactForm />
+                <ContactForm />
 
-            <SetInfo item={currentSet} />
+                <SetInfo item={currentSet} />
 
-            <div className="mb-5"></div>
+                <div className="mb-5"></div>
 
-            {currentSet.items.map((el) => (
-                <SetItem
-                    key={el.id}
-                    item={el}
-                    color='sec'
-                    showCross={true}
-                    onCrossClick={() => console.log('onCrossClick!')} />
-            ))}
+                {currentSet.items.map((el) => (
+                    <SetItem
+                        key={el.id}
+                        item={el}
+                        color='sec'
+                        showCross={true}
+                        onCrossClick={() => console.log('onCrossClick!')} />
+                ))}
 
 
-            <SetResult />
+                <SetResult />
+
+            </>) : <div className="text-h1 text--demibold mb-10">Загрузка..</div>}
         </section>
+
     </>)
 }

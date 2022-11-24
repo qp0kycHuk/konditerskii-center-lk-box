@@ -219,6 +219,7 @@
 
 	&-fab,
 	&-icon {
+		min-width  : var(--size);
 		width  : var(--size);
 		padding: 0;
 	}

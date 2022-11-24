@@ -1,6 +1,8 @@
 import './App.scss';
+import { Provider } from 'react-redux'
 import React from 'react'
 import ReactDOM from 'react-dom/client';
+import { setupStore } from './store/store';
 import { App } from './App'
 
 import ripple from 'npm-kit-ripple';
@@ -16,7 +18,16 @@ function loadHandler() {
 	ripple.attach('.waved')
 	ripple.deAttach('.btn--link')
 
-	const root = ReactDOM.createRoot(document.querySelector('#root'))
+	const store = setupStore()
 
-	root.render(<App />)
+	const $root = document.querySelector('#root')
+	if ($root) {
+		const root = ReactDOM.createRoot($root)
+
+		root.render(
+			<Provider store={store}>
+				<App />
+			</Provider>
+		)
+	}
 }
