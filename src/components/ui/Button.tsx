@@ -14,6 +14,7 @@ export const Button = ({
     children,
     color = 'primary',
     variant = 'fill',
+    type = 'button',
     size,
     icon,
     fab,
@@ -33,6 +34,6 @@ export const Button = ({
     ].join(' ')
 
     return (
-        <button {...props} className={btnClassName}>{children}</button>
+        <button {...props} className={btnClassName} type={type}>{children}</button>
     )
 }

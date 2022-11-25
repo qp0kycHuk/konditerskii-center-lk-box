@@ -2,11 +2,22 @@ import React, { useEffect, useState, useRef } from 'react'
 import { Button } from '@components/ui/Button'
 
 import './SetList.scss'
-import { SetListItem } from './SetListItem'
+import { SetListItem, SetListItemPlaceholder } from './SetListItem'
+import { useAppDispatch, useAppSelector } from '@src/hooks/redux'
+import { fetchSets } from '@src/store/reducers/Set/SetActions'
+import { ISet } from '@src/models/ISet'
 
 export const SetList = () => {
+    const { setList, fetchLoading, fetchError } = useAppSelector((state) => state.set)
+    const dispatch = useAppDispatch()
 
-    return (
+
+    useEffect(() => {
+        dispatch(fetchSets())
+
+    }, [])
+
+    return (<>
         <div className="card dialog-large">
             <div className="set-modal-top">
                 <div className="text-h1 text--center">Готовые наборы</div>
@@ -25,10 +36,18 @@ export const SetList = () => {
                     </div>
                 </form>
                 <div className="set-list-items">
-                    <SetListItem></SetListItem>
+                    {setList && setList.length > 0 ?
+                        setList.map((set: ISet) => (
+                            <SetListItem key={set.id} item={set}></SetListItem>
+                        )) :
+                        (<>
+                            {!fetchError && (new Array(3).fill(1).map((_, i) => <SetListItemPlaceholder key={i} />))}
+                            {fetchError && fetchError}
+                        </>)
+                    }
                 </div>
             </div>
         </div>
 
-    )
+    </>)
 }

@@ -29,7 +29,7 @@ export const SetInfoItem = () => {
                     </div>
                 </label>
                 <Button variant='white-bg' fab size='small' className="set-info-item__remove">
-                    <svg className="icon"><use xlinkHref="img/icons.svg#cross" /></svg>
+                    <svg className="icon text-small"><use xlinkHref="img/icons.svg#cross" /></svg>
                 </Button>
                 
             </div>

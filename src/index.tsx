@@ -4,6 +4,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client';
 import { setupStore } from './store/store';
 import { App } from './App'
+import { toast, ToastContainer } from 'react-toastify';
 
 import ripple from 'npm-kit-ripple';
 
@@ -27,6 +28,8 @@ function loadHandler() {
 		root.render(
 			<Provider store={store}>
 				<App />
+				<ToastContainer
+					position={toast.POSITION.BOTTOM_LEFT} />
 			</Provider>
 		)
 	}

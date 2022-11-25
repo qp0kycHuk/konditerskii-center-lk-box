@@ -1,6 +1,6 @@
-import { useAppDispatch, useAppSelector } from '@src/hooks/redux'
-import { setSlice } from '@src/store/reducers/SetSlice'
 import React, { useEffect } from 'react'
+import { useAppDispatch, useAppSelector } from '@src/hooks/redux'
+import { fetchSetById } from '@src/store/reducers/Set/SetActions'
 import { ISet } from '../../models/ISet'
 import { fakeSetItem } from '../../service/fake'
 import { ContactForm } from '../ContactForm/ContactForm'
@@ -9,6 +9,10 @@ import { SetHeader } from './SetHeader/SetHeader'
 import { SetInfo } from './SetInfo/SetInfo'
 import { SetItem } from './SetItem/SetItem'
 import { SetResult } from './SetResult/SetResult'
+import { Button } from '../ui/Button'
+import { useDialog } from '@src/hooks/use-dialog'
+import { Dialog } from '../Dialog/Dialog'
+import { SetInfoAdd } from './SetInfoAdd/SetInfoAdd'
 
 
 const initialSet: ISet = {
@@ -20,18 +24,18 @@ const initialSet: ISet = {
     comment: 'Комментарий',
     items: new Array(5).fill(1).map(fakeSetItem)
 }
-console.log(JSON.stringify(new Array(25).fill(1).map(fakeSetItem)));
 
 
 export const SetPage = () => {
+    const [addDialogOpened, showAddDialog, closeAddDialog] = useDialog(false)
     // Получаем данные из state
-    const { currentSet } = useAppSelector((state) => state.setReducer)
+    const { currentSet, getLoading, getError } = useAppSelector((state) => state.set)
     // Action creator для обновления текущего набора
-    const { initCurrentSet } = setSlice.actions
     const dispatch = useAppDispatch()
 
     useEffect(() => {
-        dispatch(initCurrentSet(initialSet))
+        dispatch(fetchSetById(1))
+
     }, [])
 
 
@@ -41,6 +45,8 @@ export const SetPage = () => {
         </Header>
 
         <section className="set-page">
+            {getLoading && 'Загрузка'}
+            {getError && getError}
             {currentSet ? (<>
                 <div className="text-h1 text--demibold mb-10">{currentSet.title}</div>
 
@@ -50,20 +56,25 @@ export const SetPage = () => {
 
                 <div className="mb-5"></div>
 
-                {currentSet.items.map((el) => (
-                    <SetItem
-                        key={el.id}
-                        item={el}
-                        color='sec'
-                        showCross={true}
-                        onCrossClick={() => console.log('onCrossClick!')} />
-                ))}
+                {currentSet.items?.length > 0 ?
+                    currentSet.items.map((el) => (
+                        <SetItem
+                            key={el.id}
+                            item={el}
+                            color='sec'
+                            showCross={true}
+                            onCrossClick={() => console.log('onCrossClick!')} />
+                    )) :
+                    <Button variant='light' size='large' className='w-100' onClick={showAddDialog}>Добавить позицию</Button>
+                }
 
+                <SetResult showAddDialog={showAddDialog} />
 
-                <SetResult />
-
-            </>) : <div className="text-h1 text--demibold mb-10">Загрузка..</div>}
+            </>) : null}
         </section>
 
+        <Dialog isOpen={addDialogOpened} onClose={closeAddDialog}>
+            <SetInfoAdd />
+        </Dialog>
     </>)
 }

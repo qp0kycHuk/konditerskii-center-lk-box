@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useEffect, useState, useRef, FC } from 'react'
 import { useDropdown } from '@src/hooks/use-dropdown'
 import { ISetComponent } from '@src/models/ISetComponent'
 import { ISetItem } from '@src/models/ISetItem'
@@ -6,9 +6,11 @@ import { Button } from '@components/ui/Button'
 import { UiColors } from '@components/ui/types'
 
 import './SetItem.scss'
+import { ICandy } from '@src/models/ICandy'
+import { useCounter } from '@src/hooks/use-counter'
 
 interface IProps {
-    item: ISetItem 
+    item: ICandy
     color?: UiColors
     showCross?: boolean
     showPlus?: boolean
@@ -20,7 +22,7 @@ interface IProps {
     bordered?: boolean
 }
 
-export const SetItem = ({
+export const SetItem: FC<IProps> = ({
     item,
     color = 'primary',
     showCross = false,
@@ -31,28 +33,42 @@ export const SetItem = ({
     onCheckClick,
     showCounter = true,
     bordered = false,
-}: IProps) => {
+}) => {
+    const [count, plus, minus] = useCounter(item.count)
 
     const content = useRef(null)
-
     const { isOpen, toggle, styleHeight } = useDropdown(content)
 
+    const formRef = useRef(null)
+
+    function onActionButtonClick(handler: (arg: any) => any) {
+        return () => {
+            if (formRef.current) {
+                const formData = new FormData(formRef.current as HTMLFormElement)
+                return handler(Object.fromEntries(formData))
+            }
+        }
+    }
+
     return (
-        <div className={`set-item card ${bordered ? 'card--bordered' : ''} mb-4`}>
-            <div className="set-item-preview print-wrapper">
+        <form ref={formRef} className={`set-item card ${bordered ? 'card--bordered' : ''} mb-4`}>
+            <div className="set-item-preview">
                 <div className="set-item__left">
                     {showCross ? (
-                        <Button icon color={color} className='mb-2' {...(onCrossClick ? { onClick: onCrossClick } : {})}>
+                        <Button icon color={color} className='mb-2'
+                            {...(onCrossClick ? { onClick: onActionButtonClick(onCrossClick) } : {})}>
                             <svg className="icon"><use xlinkHref="img/icons.svg#cross" /></svg>
                         </Button>
                     ) : null}
                     {showPlus ? (
-                        <Button icon color={color} className='mb-2' {...(onPlusClick ? { onClick: onPlusClick } : {})}>
+                        <Button icon color={color} className='mb-2'
+                            {...(onPlusClick ? { onClick: onActionButtonClick(onPlusClick) } : {})}>
                             <svg className="icon"><use xlinkHref="img/icons.svg#plus" /></svg>
                         </Button>
                     ) : null}
                     {showCheck ? (
-                        <Button icon color={color} className='mb-2' {...(onCheckClick ? { onClick: onCheckClick } : {})}>
+                        <Button icon color={color} className='mb-2'
+                            {...(onCheckClick ? { onClick: onActionButtonClick(onCheckClick) } : {})}>
                             <svg className="icon"><use xlinkHref="img/icons.svg#gal-ochka" /></svg>
                         </Button>
                     ) : null}
@@ -66,9 +82,9 @@ export const SetItem = ({
                     <div className="set-item-counter">
                         <div className="set-item-counter__title">Кол-во шт.</div>
                         <div className="set-item-counter__block">
-                            <button className="set-item-counter__btn set-item-counter__minus btn">-</button>
-                            <input type="number" className="set-item-counter__input -count-" defaultValue={item.count} />
-                            <button className="set-item-counter__btn set-item-counter__plus btn">+</button>
+                            <Button className="set-item-counter__btn btn" color='text' variant='light' onClick={minus as any}>-</Button>
+                            <input type="number" className="set-item-counter__input" name='count' value={count as any} onChange={(e) => { }} />
+                            <Button className="set-item-counter__btn btn" color='text' variant='light' onClick={plus as any}>+</Button>
                         </div>
                     </div>
                 ) : null}
@@ -129,6 +145,25 @@ export const SetItem = ({
                             <Button>Сохранить</Button>
                             <Button variant='light' className='ml-4'>Удалить</Button>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    )
+}
+
+export const SetItemPlaceholder: FC = () => {
+    return (
+        <div className='set-item set-item-placeholder card mb-4'>
+            <div className="set-item-preview">
+                <div className="set-item-img bg-l1"></div>
+                <div className="set-item-name text-body-0 text--bold">
+                    <div className='pb-6 bg-l1 flex'>
+                        <div className="pl-10"></div>
+                        <div className="pl-10"></div>
+                        <div className="pl-10"></div>
+                        <div className="pl-10"></div>
+                        <div className="pl-10"></div>
                     </div>
                 </div>
             </div>

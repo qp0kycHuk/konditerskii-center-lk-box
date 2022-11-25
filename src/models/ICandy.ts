@@ -11,4 +11,5 @@ export interface ICandy {
     comment: string
     structure: string // Состав
     period: number // Срок годности
+    count: number 
 }

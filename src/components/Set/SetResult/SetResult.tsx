@@ -1,9 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 import { Button } from '@components/ui/Button'
 
 import './SetResult.scss'
 
-export const SetResult = () => {
+interface IProps {
+    showAddDialog: () => void
+}
+
+export const SetResult: FC<IProps> = ({ showAddDialog }) => {
 
     return (<>
         <div className="set-itog">
@@ -38,7 +42,7 @@ export const SetResult = () => {
 
         </div>
         <div className="set-result">
-            <Button size='large' > Редактировать набор  </Button>
+            <Button size='large' onClick={showAddDialog}> Редактировать набор  </Button>
             <div className="set-result-block">
                 <div className="set-result__props">
                     <div className="set-result__prop">Нетто, г: <span className="netto_itog">500</span></div>

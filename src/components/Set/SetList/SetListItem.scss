@@ -1,13 +1,15 @@
 .set-ready-item {
-    background   : #FFFFFF;
-    border       : 1px solid #D4D4D4;
-    box-shadow   : 0px 4px 12px rgba(0, 0, 0, 0.08);
-    border-radius: 12px;
     display      : flex;
+    flex-direction: row;
     align-items  : center;
     padding      : 25px;
     padding-left : 8px;
     position     : relative;
+
+    &-placeholder {
+        height: 152px;
+        opacity: 0.8;
+    }
 
     &__img {
         width       : 150px;

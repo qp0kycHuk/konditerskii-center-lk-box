@@ -29,6 +29,9 @@
         "noEmit": false,
         "jsx": "react-jsx"
     },
+    "files": [
+        "src/declaration.d.ts"
+    ],
     "include": [
         "src"
     ]

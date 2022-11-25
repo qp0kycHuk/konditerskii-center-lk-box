@@ -1,8 +1,10 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
-import setReducer from './reducers/SetSlice'
+import setReducer from './reducers/Set/SetSlice'
+import CandySlice from './reducers/Candy/CandySlice'
 
 const rootReduser = combineReducers({
-    setReducer
+    set: setReducer,
+    candy: CandySlice,
 })
 
 
