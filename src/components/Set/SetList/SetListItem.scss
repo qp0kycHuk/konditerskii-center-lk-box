@@ -1,14 +1,19 @@
 .set-ready-item {
-    display      : flex;
+    display       : flex;
     flex-direction: row;
-    align-items  : center;
-    padding      : 25px;
-    padding-left : 8px;
-    position     : relative;
+    align-items   : center;
+    padding       : 25px;
+    padding-left  : 8px;
+    position      : relative;
+    cursor        : pointer;
 
     &-placeholder {
-        height: 152px;
+        height : 152px;
         opacity: 0.8;
+    }
+
+    &-wrap {
+        position: relative;
     }
 
     &__img {
@@ -25,8 +30,15 @@
     }
 
     &__title {
-        font-weight: 600;
-        font-size  : 26px;
+        font-weight          : 600;
+        font-size            : 26px;
+        text-underline-offset: 4px;
+    }
+
+    @media(hover) {
+        &:hover &__title {
+            text-decoration: underline;
+        }
     }
 
     &__edit {

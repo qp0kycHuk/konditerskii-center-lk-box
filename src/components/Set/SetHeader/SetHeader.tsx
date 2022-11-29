@@ -3,9 +3,17 @@ import { useDialog } from '@src/hooks/use-dialog';
 import { Button } from '@components/ui/Button';
 import { Dialog } from '@components/Dialog/Dialog';
 import { SetList } from '../SetList/SetList';
+import { useAppSelector } from '@src/hooks/redux';
 
 export const SetHeader = () => {
     const [listDialogOpened, showListDialog, closeListDialog] = useDialog(false)
+    const { currentSet } = useAppSelector((state) => state.set)
+
+    useEffect(() => {
+        console.log('currentSet change');
+
+        closeListDialog()
+    }, [currentSet?.id])
     
     return (<>
         <div className="flex">

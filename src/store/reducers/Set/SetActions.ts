@@ -5,7 +5,7 @@ import { SetApi } from "./SetApi"
 
 export const fetchSetById = createAsyncThunk(
     'set/get',
-    async (setId: number, thunkAPI) => {
+    async (setId: string, thunkAPI) => {
         try {
             const response = await SetApi.get(setId)
 

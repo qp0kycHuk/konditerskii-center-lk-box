@@ -34,7 +34,7 @@ export const SetPage = () => {
     const dispatch = useAppDispatch()
 
     useEffect(() => {
-        dispatch(fetchSetById(1))
+        dispatch(fetchSetById('1'))
 
     }, [])
 

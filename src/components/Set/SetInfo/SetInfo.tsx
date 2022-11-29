@@ -18,6 +18,7 @@ export const SetInfo = ({ item }: IProps) => {
 
 
 
+
     return (<>
         <div className="set-info card">
             <div className="set-info__left">

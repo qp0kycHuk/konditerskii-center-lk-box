@@ -29,6 +29,7 @@ export const setSlice = createSlice({
         setCurrentSet(state, action: PayloadAction<ISet>) {
             state.currentSet = action.payload
         },
+        
         addCandy(state, action: PayloadAction<ISetItem>) {
             if (!state.currentSet) return
 
