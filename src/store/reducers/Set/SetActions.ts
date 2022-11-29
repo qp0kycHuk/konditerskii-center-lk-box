@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
-import { SERVER_ERROR_MESSAGE } from "@src/const/Errors"
+import { SERVER_ERROR_MESSAGE } from "@src/const/Messages"
 import { ISet } from "@src/models/ISet";
 import { SetApi } from "./SetApi"
 

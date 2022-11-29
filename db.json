@@ -6,7 +6,24 @@
       "title": "Туба с ёлкой",
       "weight": "122",
       "purchasePrice": "2000",
-      "comment": "Комментарий"
+      "comment": "Комментарий",
+      "items": [
+        {
+          "id": "652-70",
+          "title": "Конфета Осенний Вальс",
+          "weight": 6,
+          "weightSingle": 4,
+          "weightBox": 1455,
+          "price": 3,
+          "priceBox": 65,
+          "priceCandy": 3,
+          "image": "img/fake/2.jpg",
+          "structure": "",
+          "period": 4,
+          "count": 9,
+          "isInSet": true
+        }
+      ]
     },
     {
       "id": "2",
@@ -22,7 +39,52 @@
       "title": "Набор Ассорти № 1",
       "weight": "125",
       "purchasePrice": "1000",
-      "comment": "Комментарий"
+      "comment": "Комментарий",
+      "items": [
+        {
+          "id": "652-70",
+          "title": "Конфета Осенний Вальс",
+          "weight": 6,
+          "weightSingle": 4,
+          "weightBox": 1455,
+          "price": 3,
+          "priceBox": 65,
+          "priceCandy": 3,
+          "image": "img/fake/2.jpg",
+          "structure": "",
+          "period": 4,
+          "count": "3"
+        },
+        {
+          "id": "816-737",
+          "title": "Конфета Ура Пятница",
+          "weight": 8,
+          "weightSingle": 2,
+          "weightBox": 2457,
+          "price": 9,
+          "priceBox": 986,
+          "priceCandy": 2,
+          "image": "img/test.jpg",
+          "comment": "Премиум",
+          "structure": "",
+          "period": 2,
+          "count": "6"
+        },
+        {
+          "id": "549-940",
+          "title": "La Suissa cocoa cream",
+          "weight": 2,
+          "weightSingle": 6,
+          "weightBox": 493,
+          "price": 5,
+          "priceBox": 106,
+          "priceCandy": 0,
+          "image": "img/fake/3.jpg",
+          "structure": "",
+          "period": 4,
+          "count": "0"
+        }
+      ]
     },
     {
       "id": "4",

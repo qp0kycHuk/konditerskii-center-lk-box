@@ -7,22 +7,37 @@ import { ICandy } from '@src/models/ICandy';
 import { setSlice } from '@src/store/reducers/Set/SetSlice';
 
 import './SetInfoAdd.scss';
+import { ISetItem } from '@src/models/ISetItem';
+
+
 
 export const SetInfoAdd = () => {
     const { candyList, fetchLoading, fetchError } = useAppSelector((state) => state.candy)
     const { currentSet } = useAppSelector((state) => state.set)
     const dispatch = useAppDispatch()
 
+    const [items, setItems] = useState<ISetItem[]>()
 
     useEffect(() => {
         dispatch(fetchCandies())
 
     }, [])
 
+    useEffect(() => {
+
+        setItems(candyList.map((c) => {
+            const setItem = checkInSet(c)
+
+            return {
+                ...c,
+                isInSet: !!setItem,
+                count: setItem ? setItem.count : 1
+            }
+        }))
+    }, [candyList, currentSet])
+
 
     function addItem(item: ICandy, count: number) {
-        console.log(count);
-
         dispatch(setSlice.actions.addCandy({
             ...item,
             count: count
@@ -35,9 +50,9 @@ export const SetInfoAdd = () => {
         }))
     }
 
-    function isInSet(item: ICandy) {
+    function checkInSet(item: ICandy) {
         if (currentSet?.items) {
-            return currentSet.items.find((c) => c.id === item.id) ? true : false
+            return currentSet.items.find((c) => c.id === item.id)
         }
 
         return false
@@ -62,16 +77,17 @@ export const SetInfoAdd = () => {
                     </div>
                 </form>
                 <div className="set-modal-items">
-                    {candyList && candyList.length > 0 ?
-                        candyList.map((candy: ICandy) => (
+                    {items && items.length > 0 ?
+                        items.map((candy) => (
                             <SetItem
                                 key={candy.id}
                                 item={candy}
                                 bordered
                                 showCounter={true}
-                                color={isInSet(candy) ? 'sec' : 'primary'}
-                                showPlus={!isInSet(candy)}
-                                showCheck={isInSet(candy)}
+                                initialCount={candy.count}
+                                color={candy.isInSet ? 'sec' : 'primary'}
+                                showPlus={!candy.isInSet}
+                                showCheck={candy.isInSet}
                                 onPlusClick={({ count }) => addItem(candy, count)}
                                 onCheckClick={() => removeItem(candy)} />
                         )) :

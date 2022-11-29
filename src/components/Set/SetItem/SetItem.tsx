@@ -8,9 +8,12 @@ import { UiColors } from '@components/ui/types'
 import './SetItem.scss'
 import { ICandy } from '@src/models/ICandy'
 import { useCounter } from '@src/hooks/use-counter'
+import { useAppDispatch, useAppSelector } from '@src/hooks/redux'
+import { setSlice } from '@src/store/reducers/Set/SetSlice'
+import { ISet } from '@src/models/ISet'
 
 interface IProps {
-    item: ICandy
+    item: ISetItem
     color?: UiColors
     showCross?: boolean
     showPlus?: boolean
@@ -20,6 +23,7 @@ interface IProps {
     onCheckClick?: (arg: any) => any
     showCounter?: boolean
     bordered?: boolean
+    initialCount?: number
 }
 
 export const SetItem: FC<IProps> = ({
@@ -33,13 +37,48 @@ export const SetItem: FC<IProps> = ({
     onCheckClick,
     showCounter = true,
     bordered = false,
+    initialCount = 0
 }) => {
-    const [count, plus, minus] = useCounter(item.count)
+    const { currentSet } = useAppSelector((state) => state.set)
+    const dispatch = useAppDispatch()
+    const { count, plus, minus, setCount } = useCounter(initialCount)
 
     const content = useRef(null)
     const { isOpen, toggle, styleHeight } = useDropdown(content)
 
     const formRef = useRef(null)
+
+    useEffect(() => {
+        if (item.isInSet) {
+            dispatch(setSlice.actions.setCurrentSet({
+                ...currentSet,
+                items: currentSet?.items.map((c) => {
+                    if (c.id == item.id) {
+                        return {
+                            ...item,
+                            count
+                        }
+                    }
+                    return c
+                })
+            } as ISet))
+            console.log(currentSet?.items.map((c) => {
+                if (c.id == item.id) {
+                    return {
+                        ...item,
+                        count
+                    }
+                }
+                return c
+            }));
+
+        }
+
+    }, [count])
+
+    useEffect(() => {
+        setCount(initialCount)
+    }, [initialCount])
 
     function onActionButtonClick(handler: (arg: any) => any) {
         return () => {

@@ -29,7 +29,7 @@ function loadHandler() {
 			<Provider store={store}>
 				<App />
 				<ToastContainer
-					position={toast.POSITION.BOTTOM_LEFT} />
+					position={toast.POSITION.TOP_RIGHT} />
 			</Provider>
 		)
 	}

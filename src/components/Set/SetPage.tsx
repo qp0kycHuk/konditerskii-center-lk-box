@@ -13,6 +13,8 @@ import { Button } from '../ui/Button'
 import { useDialog } from '@src/hooks/use-dialog'
 import { Dialog } from '../Dialog/Dialog'
 import { SetInfoAdd } from './SetInfoAdd/SetInfoAdd'
+import { Id as toastId, toast } from 'react-toastify';
+import { SAVING_IN_PROGRESS_MESSAGE, SAVING_SUCCESS_MESSAGE } from '@src/const/Messages'
 
 
 const initialSet: ISet = {
@@ -29,7 +31,8 @@ const initialSet: ISet = {
 export const SetPage = () => {
     const [addDialogOpened, showAddDialog, closeAddDialog] = useDialog(false)
     // Получаем данные из state
-    const { currentSet, getLoading, getError } = useAppSelector((state) => state.set)
+
+    const { currentSet, getLoading, getError, updateLoading, updateError } = useAppSelector((state) => state.set)
     // Action creator для обновления текущего набора
     const dispatch = useAppDispatch()
 
@@ -37,6 +40,29 @@ export const SetPage = () => {
         dispatch(fetchSetById('1'))
 
     }, [])
+
+    useEffect(() => {
+        let id: toastId
+
+
+        if (updateLoading) {
+            id = toast.loading(SAVING_IN_PROGRESS_MESSAGE)
+
+        }
+
+        return () => {
+            if (id) {
+                toast.update(id, {
+                    render: updateError ? updateError : SAVING_SUCCESS_MESSAGE,
+                    type: updateError ? 'error' : 'success',
+                    isLoading: false,
+                    autoClose: 2000,
+                    delay: 1000
+                });
+            }
+        }
+    }, [updateLoading])
+
 
 
     return (<>
@@ -60,10 +86,11 @@ export const SetPage = () => {
                     currentSet.items.map((el) => (
                         <SetItem
                             key={el.id}
-                            item={el}
+                            item={{ ...el, isInSet: true }}
                             color='sec'
                             showCross={true}
-                            onCrossClick={() => console.log('onCrossClick!')} />
+                            initialCount={el.count}
+                        />
                     )) :
                     <Button variant='light' size='large' className='w-100' onClick={showAddDialog}>Добавить позицию</Button>
                 }

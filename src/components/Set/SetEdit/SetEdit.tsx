@@ -1,11 +1,10 @@
 import React, { FormEvent, useEffect, useState } from 'react'
 import { ISet } from '@src/models/ISet';
 import { Button } from '@components/ui/Button';
-import './SetEdit.scss';
 import { useAppDispatch, useAppSelector } from '@src/hooks/redux';
 import { updateSet } from '@src/store/reducers/Set/SetActions';
-import { Id as toastId, toast } from 'react-toastify';
 
+import './SetEdit.scss';
 
 
 interface IProps {
@@ -27,26 +26,6 @@ export const SetEdit = ({ item }: IProps) => {
 
         dispatch(updateSet(data as ISet))
     }
-
-
-    useEffect(() => {
-        let id: toastId
-        if (updateLoading) {
-            id = toast.loading('Загрузка')
-
-        }
-
-        return () => {
-            if (id) {
-                toast.update(id, {
-                    render: updateError ? updateError : "Успешно сохранено",
-                    type: updateError ? 'error' : 'success',
-                    isLoading: false,
-                    autoClose: 2000
-                });
-            }
-        }
-    }, [updateLoading])
 
     return (
         <div className="card dialog-large">

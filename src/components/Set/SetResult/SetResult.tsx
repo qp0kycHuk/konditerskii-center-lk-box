@@ -1,5 +1,7 @@
 import React, { FC, useEffect, useState } from 'react'
 import { Button } from '@components/ui/Button'
+import { useAppDispatch, useAppSelector } from '@src/hooks/redux'
+import { updateSet } from '@src/store/reducers/Set/SetActions'
 
 import './SetResult.scss'
 
@@ -8,6 +10,15 @@ interface IProps {
 }
 
 export const SetResult: FC<IProps> = ({ showAddDialog }) => {
+    const { currentSet, updateLoading, updateError } = useAppSelector((state) => state.set)
+    const dispatch = useAppDispatch()
+
+
+    function saveCurrent() {
+        if (currentSet && !updateLoading) {
+            dispatch(updateSet(currentSet))
+        }
+    }
 
     return (<>
         <div className="set-itog">
@@ -27,7 +38,7 @@ export const SetResult: FC<IProps> = ({ showAddDialog }) => {
                 </div>
             </div>
             <div className="flex ml-auto">
-                <Button icon variant='light' color='white' className="mr-2">
+                <Button icon variant='light' color='white' className="mr-2" onClick={saveCurrent}>
                     <svg className="icon"><use xlinkHref="img/icons.svg#save" /></svg>
                 </Button>
                 <Button variant='light' color='white' className="mr-2">
