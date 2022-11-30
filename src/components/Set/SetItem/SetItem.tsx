@@ -62,15 +62,6 @@ export const SetItem: FC<IProps> = ({
                     return c
                 })
             } as ISet))
-            console.log(currentSet?.items.map((c) => {
-                if (c.id == item.id) {
-                    return {
-                        ...item,
-                        count
-                    }
-                }
-                return c
-            }));
 
         }
 
@@ -113,7 +104,7 @@ export const SetItem: FC<IProps> = ({
                     ) : null}
                 </div>
                 <div className="set-item-img">
-                    <div className={`set-item__weight bg-${color}`}>{item.weight} г</div>
+                    <div className={`set-item__weight bg-${color}`}>{item.weightSingle} г</div>
                     <img src={item.image} alt="" />
                 </div>
                 <div className="set-item-name text-body-0 text--bold">{item.title}</div>
@@ -130,12 +121,12 @@ export const SetItem: FC<IProps> = ({
                 <div className="set-item-propertie">
                     <div className="text-small fade-80">Масса в наборе, г.</div>
                     <div className="divider"></div>
-                    <div className="set-item-propertie__value -clk-mass-">6</div>
+                    <div className="set-item-propertie__value -clk-mass-">{item.weightSingle * count}</div>
                 </div>
                 <div className="set-item-propertie">
                     <div className="text-small fade-80">Стоимость, руб</div>
                     <div className="divider"></div>
-                    <div className="set-item-propertie__value -clk-price-">2.61</div>
+                    <div className="set-item-propertie__value -clk-price-">{item.priceCandy * count}</div>
                 </div>
                 <div className="set-item-desc"> <b>Комментарий:</b> {item.comment} <br /> <b>Состав</b> {item.structure} </div>
                 <Button className="set-item-toggle" variant='light' fab onClick={() => toggle()}>
@@ -153,23 +144,23 @@ export const SetItem: FC<IProps> = ({
                         <div className="set-item__settings mb-5">
                             <div className="set-item-propertie">
                                 <div className="text-small fade-80">Срок годности</div>
-                                <input type="text" placeholder="0" />
+                                <input type="text" placeholder="0" defaultValue={item.period} name="period" />
                             </div>
                             <div className="set-item-propertie">
                                 <div className="text-small fade-80">Масса одной позиции, г</div>
-                                <input type="text" placeholder="0" />
+                                <input type="text" placeholder="0" defaultValue={item.weightSingle} name="weightSingle" />
                             </div>
                             <div className="set-item-propertie">
                                 <div className="text-small fade-80">Масса блока (коробки), г.</div>
-                                <input type="text" placeholder="0" />
+                                <input type="text" placeholder="0" defaultValue={item.weightBox} name="weightBox" />
                             </div>
                             <div className="set-item-propertie">
                                 <div className="text-small fade-80">Стоимость коробки, руб</div>
-                                <input type="text" placeholder="0" />
+                                <input type="text" placeholder="0" defaultValue={item.priceBox} name="priceBox" />
                             </div>
                             <div className="set-item-propertie">
                                 <div className="text-small fade-80">Цена одной конфеты, руб</div>
-                                <input type="text" placeholder="0" />
+                                <input type="text" placeholder="0" defaultValue={item.priceCandy} name="priceCandy" />
                             </div>
                         </div>
                         <label className="set-item-content__desc mb-5">

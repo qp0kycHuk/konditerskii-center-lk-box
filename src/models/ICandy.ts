@@ -1,7 +1,7 @@
 export interface ICandy {
     id: string
     title: string
-    weight: number // Масса в наборе
+    // weight: number // Масса в наборе
     weightSingle: number // Масса одной позиции
     weightBox: number // Масса блока (коробки)
     price: number // Стоимость
