@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { Button } from '@components/ui/Button';
-import './SetInfoItem.scss';
+import './SetInfoComponent.scss';
 
-export const SetInfoItem = () => {
+export const SetInfoComponent = () => {
     
     return (
         <div className="set-info-item">

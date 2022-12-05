@@ -20,7 +20,38 @@
           "image": "img/fake/2.jpg",
           "structure": "",
           "period": 4,
-          "count": 15,
+          "count": 10,
+          "isInSet": true
+        },
+        {
+          "id": "679-855",
+          "title": "Nutty Cake с арахисом Новогодний",
+          "weight": 7,
+          "weightSingle": 1,
+          "weightBox": 4142,
+          "price": 6,
+          "priceBox": 247,
+          "priceCandy": 0,
+          "image": "img/fake/5.jpg",
+          "structure": "",
+          "period": 0,
+          "count": "1",
+          "isInSet": true
+        },
+        {
+          "id": "816-737",
+          "title": "Конфета Ура Пятница",
+          "weight": 8,
+          "weightSingle": 2,
+          "weightBox": 2457,
+          "price": 9,
+          "priceBox": 986,
+          "priceCandy": 2,
+          "image": "img/test.jpg",
+          "comment": "Премиум",
+          "structure": "",
+          "period": 2,
+          "count": "1",
           "isInSet": true
         }
       ]

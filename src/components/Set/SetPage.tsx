@@ -7,12 +7,12 @@ import { ContactForm } from '../ContactForm/ContactForm'
 import { Header } from '../Header/Header'
 import { SetHeader } from './SetHeader/SetHeader'
 import { SetInfo } from './SetInfo/SetInfo'
-import { SetItem } from './SetItem/SetItem'
+import { SetCandiesItem } from './SetCandies/SetCandiesItem'
 import { SetResult } from './SetResult/SetResult'
 import { Button } from '../ui/Button'
 import { useDialog } from '@src/hooks/use-dialog'
 import { Dialog } from '../Dialog/Dialog'
-import { SetInfoAdd } from './SetInfoAdd/SetInfoAdd'
+import { SetCandies } from './SetCandies/SetCandies'
 import { Id as toastId, toast } from 'react-toastify';
 import { SAVING_IN_PROGRESS_MESSAGE, SAVING_SUCCESS_MESSAGE } from '@src/const/Messages'
 
@@ -84,7 +84,7 @@ export const SetPage = () => {
 
                 {currentSet.items?.length > 0 ?
                     currentSet.items.map((el) => (
-                        <SetItem
+                        <SetCandiesItem
                             key={el.id}
                             item={{ ...el, isInSet: true }}
                             color='sec'
@@ -101,7 +101,7 @@ export const SetPage = () => {
         </section>
 
         <Dialog isOpen={addDialogOpened} onClose={closeAddDialog}>
-            <SetInfoAdd />
+            <SetCandies />
         </Dialog>
     </>)
 }

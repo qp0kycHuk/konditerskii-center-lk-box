@@ -24,7 +24,7 @@ export const candySlice = createSlice({
     initialState,
     reducers: {},
     extraReducers: (builder) => {
-        // Fetch candy by Id
+        // Fetch candy 
         builder.addCase(fetchCandies.pending.type, (state, action) => {
             state.fetchLoading = true
         })
@@ -39,7 +39,7 @@ export const candySlice = createSlice({
             state.fetchError = action.payload
         })
 
-        // Update candy
+        // Update candy by Id
         builder.addCase(updateCandy.pending.type, (state, action) => {
             state.updateLoading = true
         })

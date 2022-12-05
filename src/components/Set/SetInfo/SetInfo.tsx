@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import { SetInfoItem } from './SetInfoItem'
-import './SetInfo.scss';
+import { SetInfoComponent } from './SetInfoComponent'
 import { Button } from '@components/ui/Button';
 import { Dialog } from '@components/Dialog/Dialog';
-import { SetInfoAdd } from '../SetInfoAdd/SetInfoAdd';
+import { SetCandies } from '../SetCandies/SetCandies';
 import { SetEdit } from '../SetEdit/SetEdit';
 import { useDialog } from '@src/hooks/use-dialog';
 import { ISet } from '@src/models/ISet';
+
+import './SetInfo.scss';
 
 interface IProps {
     item: ISet
@@ -42,7 +43,7 @@ export const SetInfo = ({ item }: IProps) => {
                 <div className="text-h2 mb-8">{item.title}</div>
                 <div className="set-info-list">
 
-                    <SetInfoItem />
+                    <SetInfoComponent />
 
                     <div className="set-info-item">
                         <div className="set-info-item__title"></div>
@@ -63,7 +64,7 @@ export const SetInfo = ({ item }: IProps) => {
         </div>
 
         <Dialog isOpen={addDialogOpened} onClose={closeAddDialog}>
-            <SetInfoAdd />
+            <SetCandies />
         </Dialog>
 
         <Dialog isOpen={editDialogOpened} onClose={closeEditDialog}>

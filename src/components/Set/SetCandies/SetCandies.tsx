@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import { Button } from '@components/ui/Button';
-import { SetItem, SetItemPlaceholder } from '../SetItem/SetItem';
+import { SetCandiesItem } from './SetCandiesItem';
 import { fetchCandies } from '@src/store/reducers/Candy/CandyActions';
 import { useAppDispatch, useAppSelector } from '@src/hooks/redux';
 import { ICandy } from '@src/models/ICandy';
 import { setSlice } from '@src/store/reducers/Set/SetSlice';
 
-import './SetInfoAdd.scss';
+import './SetCandies.scss';
 import { ISetItem } from '@src/models/ISetItem';
+import { SetItemRowPlaceholder } from '../SetItemRow/SetItemRow';
 
 
 
-export const SetInfoAdd = () => {
+export const SetCandies = () => {
     const { candyList, fetchLoading, fetchError } = useAppSelector((state) => state.candy)
     const { currentSet } = useAppSelector((state) => state.set)
     const dispatch = useAppDispatch()
@@ -79,11 +80,10 @@ export const SetInfoAdd = () => {
                 <div className="set-modal-items">
                     {items && items.length > 0 ?
                         items.map((candy) => (
-                            <SetItem
+                            <SetCandiesItem
                                 key={candy.id}
                                 item={candy}
                                 bordered
-                                showCounter={true}
                                 initialCount={candy.count}
                                 color={candy.isInSet ? 'sec' : 'primary'}
                                 showPlus={!candy.isInSet}
@@ -92,7 +92,7 @@ export const SetInfoAdd = () => {
                                 onCheckClick={() => removeItem(candy)} />
                         )) :
                         (<>
-                            {!fetchError && (new Array(3).fill(1).map((_, i) => <SetItemPlaceholder key={i} />))}
+                            {!fetchError && (new Array(3).fill(1).map((_, i) => <SetItemRowPlaceholder key={i} />))}
                             {fetchError && fetchError}
                         </>)
                     }
