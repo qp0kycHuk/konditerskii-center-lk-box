@@ -25,7 +25,6 @@ export const SetCandies = () => {
     }, [])
 
     useEffect(() => {
-
         setItems(candyList.map((c) => {
             const setItem = checkInSet(c)
 
