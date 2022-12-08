@@ -23,7 +23,7 @@ interface IProps extends ISetItemRowProps {
 
 }
 
-export const SetItemRow: FC<IProps> = ({
+export const CandyRow: FC<IProps> = ({
     color = 'primary',
     showCross = false,
     showPlus = false,
@@ -89,7 +89,7 @@ export const SetItemRow: FC<IProps> = ({
     </>)
 }
 
-export const SetItemRowPlaceholder: FC = () => {
+export const CandyRowPlaceholder: FC = () => {
     return (
         <div className='set-item set-item-placeholder card mb-4'>
             <div className="set-item-preview">

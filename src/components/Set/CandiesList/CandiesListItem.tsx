@@ -6,6 +6,7 @@ import { useAppDispatch, useAppSelector } from '@src/hooks/redux'
 import { setSlice } from '@src/store/reducers/Set/SetSlice'
 import { ISet } from '@src/models/ISet'
 import { CandyRow, ISetItemRowProps } from '../CandyRow/CandyRow'
+import { ICandy } from '@src/models/ICandy'
 import { CandyCounter } from '../CandyCounter/CandyCounter'
 
 interface IProps extends ISetItemRowProps {
@@ -14,7 +15,7 @@ interface IProps extends ISetItemRowProps {
 }
 
 
-export const SetCandiesItem: FC<IProps> = (props) => {
+export const CandiesListItem: FC<IProps> = (props) => {
     const {
         item,
         color = 'primary',
@@ -28,9 +29,31 @@ export const SetCandiesItem: FC<IProps> = (props) => {
         initialCount = 0
     } = props
 
+    const { currentSet } = useAppSelector((state) => state.set)
+    const dispatch = useAppDispatch()
+
+
+
+
+    function addItem(item: ICandy, count: number) {
+        dispatch(setSlice.actions.updateCandy({
+            ...item,
+            count: count
+        }))
+    }
+
+    function removeItem(item: ICandy) {
+        dispatch(setSlice.actions.removeCandy({
+            ...item
+        }))
+    }
+
 
     return (
         <CandyRow {...props}
+            onPlusClick={({ count }) => addItem(item, count)}
+            onCheckClick={() => removeItem(item)}
+
             buttonSlot={(<>
                 <div className="set-item-img">
                     <div className={`set-item__weight bg-${color}`}>{item.weightSingle} г</div>
@@ -41,14 +64,14 @@ export const SetCandiesItem: FC<IProps> = (props) => {
                 <CandyCounter initialCount={initialCount} item={item} />
 
                 <div className="set-item-propertie">
-                    <div className="text-small fade-80">Масса в наборе, г.</div>
+                    <div className="text-small fade-80">Масса, г.</div>
                     <div className="divider"></div>
-                    <div className="set-item-propertie__value -clk-mass-">{item.weightSingle * item.count}</div>
+                    <div className="set-item-propertie__value -clk-mass-">{item.weightSingle}</div>
                 </div>
                 <div className="set-item-propertie">
                     <div className="text-small fade-80">Стоимость, руб</div>
                     <div className="divider"></div>
-                    <div className="set-item-propertie__value -clk-price-">{item.priceCandy * item.count}</div>
+                    <div className="set-item-propertie__value -clk-price-">{item.priceCandy}</div>
                 </div>
                 <div className="set-item-desc"> <b>Комментарий:</b> {item.comment} <br /> <b>Состав</b> {item.structure} </div>
             </>)}

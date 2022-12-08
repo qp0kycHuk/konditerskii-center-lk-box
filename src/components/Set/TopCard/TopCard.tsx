@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from 'react'
-import { SetInfoComponent } from './SetInfoComponent'
+import { ComponentsItem } from '../Components/ComponentsItem'
 import { Button } from '@components/ui/Button';
 import { Dialog } from '@components/Dialog/Dialog';
-import { SetCandies } from '../SetCandies/SetCandies';
-import { SetEdit } from '../SetEdit/SetEdit';
+import { CandiesList } from '../CandiesList/CandiesList';
+import { Edit } from '../Edit/Edit';
 import { useDialog } from '@src/hooks/use-dialog';
 import { ISet } from '@src/models/ISet';
 
-import './SetInfo.scss';
+import './TopCard.scss';
 
 interface IProps {
     item: ISet
 }
 
-export const SetInfo = ({ item }: IProps) => {
+export const TopCard = ({ item }: IProps) => {
     const [addDialogOpened, showAddDialog, closeAddDialog] = useDialog(false)
     const [editDialogOpened, showEditDialog, closeEditDialog] = useDialog(false)
 
@@ -43,7 +43,7 @@ export const SetInfo = ({ item }: IProps) => {
                 <div className="text-h2 mb-8">{item.title}</div>
                 <div className="set-info-list">
 
-                    <SetInfoComponent />
+                    <ComponentsItem />
 
                     <div className="set-info-item">
                         <div className="set-info-item__title"></div>
@@ -64,11 +64,11 @@ export const SetInfo = ({ item }: IProps) => {
         </div>
 
         <Dialog isOpen={addDialogOpened} onClose={closeAddDialog}>
-            <SetCandies />
+            <CandiesList />
         </Dialog>
 
         <Dialog isOpen={editDialogOpened} onClose={closeEditDialog}>
-            <SetEdit item={item} />
+            <Edit item={item} />
         </Dialog>
     </>)
 }

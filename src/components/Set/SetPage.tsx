@@ -6,26 +6,18 @@ import { fakeSetItem } from '../../service/fake'
 import { ContactForm } from '../ContactForm/ContactForm'
 import { Header } from '../Header/Header'
 import { SetHeader } from './SetHeader/SetHeader'
-import { SetInfo } from './SetInfo/SetInfo'
-import { SetCandiesItem } from './SetCandies/SetCandiesItem'
-import { SetResult } from './SetResult/SetResult'
+import { TopCard } from './TopCard/TopCard'
+import { CandiesListItem } from './CandiesList/CandiesListItem'
+import { Result } from './Result/Result'
 import { Button } from '../ui/Button'
 import { useDialog } from '@src/hooks/use-dialog'
 import { Dialog } from '../Dialog/Dialog'
-import { SetCandies } from './SetCandies/SetCandies'
+// import { CandiesList } from './CandiesList/CandiesList'
 import { Id as toastId, toast } from 'react-toastify';
 import { SAVING_IN_PROGRESS_MESSAGE, SAVING_SUCCESS_MESSAGE } from '@src/const/Messages'
+import { SetCandies } from './SetCandies/SetCandies'
+import { CandiesList } from './CandiesList/CandiesList'
 
-
-const initialSet: ISet = {
-    id: '1',
-    image: 'img/test.jpg',
-    title: 'Туба с Ёлкой',
-    weight: 125,
-    purchasePrice: 1000,
-    comment: 'Комментарий',
-    items: new Array(5).fill(1).map(fakeSetItem)
-}
 
 
 export const SetPage = () => {
@@ -78,30 +70,22 @@ export const SetPage = () => {
 
                 <ContactForm />
 
-                <SetInfo item={currentSet} />
+                <TopCard item={currentSet} />
 
                 <div className="mb-5"></div>
 
                 {currentSet.items?.length > 0 ?
-                    currentSet.items.map((el) => (
-                        <SetCandiesItem
-                            key={el.id}
-                            item={{ ...el, isInSet: true }}
-                            color='sec'
-                            showCross={true}
-                            initialCount={el.count}
-                        />
-                    )) :
+                    <SetCandies /> :
                     <Button variant='light' size='large' className='w-100' onClick={showAddDialog}>Добавить позицию</Button>
                 }
 
-                <SetResult showAddDialog={showAddDialog} />
+                <Result showAddDialog={showAddDialog} />
 
             </>) : null}
         </section>
 
         <Dialog isOpen={addDialogOpened} onClose={closeAddDialog}>
-            <SetCandies />
+            <CandiesList />
         </Dialog>
     </>)
 }

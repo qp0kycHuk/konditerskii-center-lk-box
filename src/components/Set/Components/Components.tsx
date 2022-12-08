@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 
 
-export const SetComponents: FC = () => {
+export const Components: FC = () => {
     return (<>
 
     </>)

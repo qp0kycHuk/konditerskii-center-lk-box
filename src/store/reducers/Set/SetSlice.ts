@@ -29,17 +29,29 @@ export const setSlice = createSlice({
         setCurrentSet(state, action: PayloadAction<ISet>) {
             state.currentSet = action.payload
         },
-        
-        addCandy(state, action: PayloadAction<ISetItem>) {
+
+        updateCandy(state, action: PayloadAction<ISetItem>) {
             if (!state.currentSet) return
 
             if (state.currentSet && !state.currentSet.items) {
                 state.currentSet.items = []
             }
 
-            state.currentSet.items.push(action.payload)
+            if (state.currentSet.items.find((c) => c.id === action.payload.id)) {
+                state.currentSet.items = state.currentSet.items.map((c) => {
+                    if (c.id === action.payload.id) {
+                        return action.payload
+                    } else {
+                        return c
+                    }
+                })
+                
+            } else {
+                state.currentSet.items.push(action.payload)
+
+            }
         },
-        
+
         removeCandy(state, action: PayloadAction<ICandy>) {
             if (!state.currentSet) return
 

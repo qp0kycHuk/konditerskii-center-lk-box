@@ -5,7 +5,7 @@ import './SetListItem.scss'
 import { ISet } from '@src/models/ISet'
 import { useDialog } from '@src/hooks/use-dialog'
 import { Dialog } from '@src/components/Dialog/Dialog'
-import { SetEdit } from '../SetEdit/SetEdit'
+import { Edit } from '../Edit/Edit'
 import { useAppDispatch } from '@src/hooks/redux'
 import { fetchSetById } from '@src/store/reducers/Set/SetActions'
 
@@ -57,7 +57,7 @@ export const SetListItem: FC<IProps> = ({ item }) => {
         </div>
 
         <Dialog isOpen={editDialogOpened} onClose={closeEditDialog}>
-            <SetEdit item={item} />
+            <Edit item={item} />
         </Dialog>
     </>)
 }

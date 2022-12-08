@@ -3,13 +3,13 @@ import { Button } from '@components/ui/Button'
 import { useAppDispatch, useAppSelector } from '@src/hooks/redux'
 import { updateSet } from '@src/store/reducers/Set/SetActions'
 
-import './SetResult.scss'
+import './Result.scss'
 
 interface IProps {
     showAddDialog: () => void
 }
 
-export const SetResult: FC<IProps> = ({ showAddDialog }) => {
+export const Result: FC<IProps> = ({ showAddDialog }) => {
     const { currentSet, updateLoading, updateError } = useAppSelector((state) => state.set)
     const dispatch = useAppDispatch()
 

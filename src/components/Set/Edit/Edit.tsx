@@ -4,14 +4,14 @@ import { Button } from '@components/ui/Button';
 import { useAppDispatch, useAppSelector } from '@src/hooks/redux';
 import { updateSet } from '@src/store/reducers/Set/SetActions';
 
-import './SetEdit.scss';
+import './Edit.scss';
 
 
 interface IProps {
     item: ISet
 }
 
-export const SetEdit = ({ item }: IProps) => {
+export const Edit = ({ item }: IProps) => {
     const { currentSet, updateLoading, updateError } = useAppSelector((state) => state.set)
     const dispatch = useAppDispatch()
 
