@@ -58,7 +58,7 @@ export const SetCandiesItem: FC<IProps> = (props) => {
                 <div className="set-item-content__inner">
                     <label className="set-item-content__desc mb-5">
                         <b>Название:</b>
-                        <textarea defaultValue={item.title}></textarea>
+                        <textarea defaultValue={item.title} name="title"></textarea>
                     </label>
                     <div className="set-item__settings mb-5">
                         <div className="set-item-propertie">
@@ -84,11 +84,11 @@ export const SetCandiesItem: FC<IProps> = (props) => {
                     </div>
                     <label className="set-item-content__desc mb-5">
                         <b>Комментарий:</b>
-                        <textarea defaultValue={item.comment}></textarea>
+                        <textarea defaultValue={item.comment} name="comment"></textarea>
                     </label>
                     <label className="set-item-content__desc mb-5">
                         <b>Состав:</b>
-                        <textarea defaultValue={item.structure}></textarea>
+                        <textarea defaultValue={item.structure} name="structure"></textarea>
                     </label>
                     <div className="flex">
                         <Button>Сохранить</Button>

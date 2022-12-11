@@ -29,11 +29,7 @@ export const CandiesListItem: FC<IProps> = (props) => {
         initialCount = 0
     } = props
 
-    const { currentSet } = useAppSelector((state) => state.set)
     const dispatch = useAppDispatch()
-
-
-
 
     function addItem(item: ICandy, count: number) {
         dispatch(setSlice.actions.updateCandy({
@@ -48,9 +44,9 @@ export const CandiesListItem: FC<IProps> = (props) => {
         }))
     }
 
-
     return (
-        <CandyRow {...props}
+        <CandyRow 
+            {...props}
             onPlusClick={({ count }) => addItem(item, count)}
             onCheckClick={() => removeItem(item)}
 
@@ -81,7 +77,7 @@ export const CandiesListItem: FC<IProps> = (props) => {
                 <div className="set-item-content__inner">
                     <label className="set-item-content__desc mb-5">
                         <b>Название:</b>
-                        <textarea defaultValue={item.title}></textarea>
+                        <textarea defaultValue={item.title} name="title"></textarea>
                     </label>
                     <div className="set-item__settings mb-5">
                         <div className="set-item-propertie">
@@ -107,11 +103,11 @@ export const CandiesListItem: FC<IProps> = (props) => {
                     </div>
                     <label className="set-item-content__desc mb-5">
                         <b>Комментарий:</b>
-                        <textarea defaultValue={item.comment}></textarea>
+                        <textarea defaultValue={item.comment} name="comment"></textarea>
                     </label>
                     <label className="set-item-content__desc mb-5">
                         <b>Состав:</b>
-                        <textarea defaultValue={item.structure}></textarea>
+                        <textarea defaultValue={item.structure} name="structure"></textarea>
                     </label>
                     <div className="flex">
                         <Button>Сохранить</Button>

@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { ICandy } from "@src/models/ICandy";
 import { ISet } from "@src/models/ISet";
+import { ISetComponent } from "@src/models/ISetComponent";
 import { ISetItem } from "@src/models/ISetItem";
 import { fetchSetById, fetchSets, updateSet } from "./SetActions";
 
@@ -45,7 +46,7 @@ export const setSlice = createSlice({
                         return c
                     }
                 })
-                
+
             } else {
                 state.currentSet.items.push(action.payload)
 
@@ -56,6 +57,16 @@ export const setSlice = createSlice({
             if (!state.currentSet) return
 
             state.currentSet.items = state.currentSet.items?.filter((c: ICandy) => c.id !== action.payload.id)
+        },
+
+        addComponent(state, action: PayloadAction<ISetComponent>) {
+            if (!state.currentSet) return
+
+            if (state.currentSet && !state.currentSet.components) {
+                state.currentSet.components = []
+            }
+
+            state.currentSet.components!.push(action.payload)
         }
 
     },

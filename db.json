@@ -477,7 +477,7 @@
       "image": "img/fake/3.jpg",
       "title": "Этикетка",
       "weight": "125",
-      "purchasePrice": "1000",
+      "price": "1000",
       "comment": "Комментарий"
     },
     {
@@ -485,7 +485,7 @@
       "image": "img/fake/1.jpg",
       "title": "Фасовщик",
       "weight": "125",
-      "purchasePrice": "1000",
+      "price": "1000",
       "comment": "Комментарий"
     },
     {
@@ -493,7 +493,7 @@
       "image": "img/fake/2.jpg",
       "title": "Упаковочная Термоплёнка",
       "weight": "125",
-      "purchasePrice": "1000",
+      "price": "1000",
       "comment": "Комментарий"
     }
   ]

@@ -3,7 +3,7 @@ export interface ISetComponent {
     id: string
     title: string
     weight: number
-    purchasePrice: number
+    price: number
     image: string
     comment: string
 

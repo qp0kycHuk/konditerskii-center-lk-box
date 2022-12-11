@@ -11,7 +11,7 @@ interface IProps {
 }
 
 export const CandyCounter: FC<IProps> = ({ item, initialCount }) => {
-  const { count, plus, minus, setCount } = useCounter(initialCount)
+  const { count, plus, minus, setCount } = useCounter(initialCount, 1, 10000)
   const dispatch = useAppDispatch()
 
   useEffect(() => {
@@ -20,16 +20,12 @@ export const CandyCounter: FC<IProps> = ({ item, initialCount }) => {
 
   useEffect(() => {
     if (count !== initialCount) {
-      countChangeHandler()
+      dispatch(setSlice.actions.updateCandy({
+        ...item,
+        count
+      }))
     }
   }, [count])
-
-  function countChangeHandler() {
-    dispatch(setSlice.actions.updateCandy({
-      ...item,
-      count
-    }))
-  }
 
   function inputHandler(event: React.ChangeEvent<HTMLInputElement>) {
     setCount(parseInt(event.target.value))

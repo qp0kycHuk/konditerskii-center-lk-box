@@ -8,13 +8,14 @@ import { useDialog } from '@src/hooks/use-dialog';
 import { ISet } from '@src/models/ISet';
 
 import './TopCard.scss';
+import { Components } from '../Components/Components';
 
 interface IProps {
     item: ISet
 }
 
 export const TopCard = ({ item }: IProps) => {
-    const [addDialogOpened, showAddDialog, closeAddDialog] = useDialog(false)
+    
     const [editDialogOpened, showEditDialog, closeEditDialog] = useDialog(false)
 
 
@@ -41,31 +42,13 @@ export const TopCard = ({ item }: IProps) => {
             </div>
             <div className="set-info__content">
                 <div className="text-h2 mb-8">{item.title}</div>
-                <div className="set-info-list">
 
-                    <ComponentsItem />
-
-                    <div className="set-info-item">
-                        <div className="set-info-item__title"></div>
-                        <button className="set-info-block set-info-block--add waved" onClick={showAddDialog}>
-                            <div>
-                                <div className="btn btn--primary btn--fill btn-fab btn-small mb-3 mx-auto">
-                                    <div className="text-h6">+</div>
-                                </div>
-                                <span className="text-small fade-60">Добавить</span>
-                            </div>
-                        </button>
-                    </div>
-                </div>
+                <Components />
             </div>
             <Button fab variant='contur' className="set-info__edit" onClick={showEditDialog}>
                 <svg className="icon"><use xlinkHref="img/icons.svg#edit" /></svg>
             </Button>
         </div>
-
-        <Dialog isOpen={addDialogOpened} onClose={closeAddDialog}>
-            <CandiesList />
-        </Dialog>
 
         <Dialog isOpen={editDialogOpened} onClose={closeEditDialog}>
             <Edit item={item} />
