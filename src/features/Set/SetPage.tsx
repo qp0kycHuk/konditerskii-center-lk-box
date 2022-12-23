@@ -1,22 +1,19 @@
 import React, { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '@src/hooks/redux'
 import { fetchSetById } from '@src/store/reducers/Set/SetActions'
-import { ISet } from '../../models/ISet'
-import { fakeSetItem } from '../../service/fake'
-import { ContactForm } from '../ContactForm/ContactForm'
-import { Header } from '../Header/Header'
+
 import { SetHeader } from './SetHeader/SetHeader'
 import { TopCard } from './TopCard/TopCard'
-import { CandiesListItem } from './CandiesList/CandiesListItem'
 import { Result } from './Result/Result'
-import { Button } from '../ui/Button'
 import { useDialog } from '@src/hooks/use-dialog'
-import { Dialog } from '../Dialog/Dialog'
-// import { CandiesList } from './CandiesList/CandiesList'
 import { Id as toastId, toast } from 'react-toastify';
 import { SAVING_IN_PROGRESS_MESSAGE, SAVING_SUCCESS_MESSAGE } from '@src/const/Messages'
 import { SetCandies } from './SetCandies/SetCandies'
 import { CandiesList } from './CandiesList/CandiesList'
+import { Dialog } from '@src/components/Dialog/Dialog'
+import { Button } from '@src/components/ui/Button'
+import { Header } from '@src/layouts/Header/Header'
+import { ContactForm } from './ContactForm/ContactForm'
 
 
 
@@ -35,7 +32,6 @@ export const SetPage = () => {
 
     useEffect(() => {
         let id: toastId
-
 
         if (updateLoading) {
             id = toast.loading(SAVING_IN_PROGRESS_MESSAGE)
@@ -63,8 +59,8 @@ export const SetPage = () => {
         </Header>
 
         <section className="set-page">
-            {getLoading && 'Загрузка'}
-            {getError && getError}
+            {getLoading ? 'Загрузка' : null}
+            {getError ? getError : null}
             {currentSet ? (<>
                 <div className="text-h1 text--demibold mb-10">{currentSet.title}</div>
 

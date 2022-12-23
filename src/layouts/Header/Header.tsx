@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { Button } from '../ui/Button';
+import { Button } from '@src/components/ui/Button';
+
 import './Header.scss';
 
-interface IHeaderProps extends React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLElement>, HTMLElement> {
-
-}
+interface IHeaderProps extends React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLElement>, HTMLElement> { }
 
 export const Header = ({ children }: IHeaderProps) => {
     return (

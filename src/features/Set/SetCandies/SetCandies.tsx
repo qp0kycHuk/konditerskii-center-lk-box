@@ -12,14 +12,16 @@ export const SetCandies = () => {
     const { currentSet } = useAppSelector((state) => state.set)
 
     return (<>
-        {currentSet?.items.map((candy) => (<SetCandiesItem
-            key={candy.id}
-            item={candy}
-            bordered
-            initialCount={candy.count}
-            color='sec'
-            showCheck={true}
+        {currentSet?.items.map((candy) => (
+            <SetCandiesItem
+                key={candy.id}
+                item={candy}
+                bordered
+                initialCount={candy.count}
+                color='sec'
+                showCheck={true}
 
-        />))}
+            />
+        ))}
     </>)
 }

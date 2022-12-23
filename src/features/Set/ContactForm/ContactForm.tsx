@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react'
+import { useDropdown } from '@src/hooks/use-dropdown';
+
 import './ContactForm.scss';
-import { Button } from '../ui/Button';
-import { useDropdown } from '../../hooks/use-dropdown';
 
 export const ContactForm = () => {
     const content = useRef(null)
@@ -13,9 +13,9 @@ export const ContactForm = () => {
         <div className="set-contact card">
             <div className="set-contact-top" onClick={() => toggle()}>
                 Контактная информация
-                <svg className="icon text-body-1"
-                    style={{ transform: isOpen ? 'rotateZ(90deg)' : '' }}
-                ><use xlinkHref="img/icons.svg#to-right" /></svg>
+                <svg className="icon text-body-1" style={{ transform: isOpen ? 'rotateZ(90deg)' : '' }} >
+                    <use xlinkHref="img/icons.svg#to-right" />
+                </svg>
             </div>
             <div className="set-contact-content" ref={content} style={styleHeight}>
                 <div className="set-contact-form">

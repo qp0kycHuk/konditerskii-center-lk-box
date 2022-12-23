@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useEffect } from 'react'
 import { Button } from '@components/ui/Button'
 
 import './SetList.scss'
@@ -7,8 +7,10 @@ import { useAppDispatch, useAppSelector } from '@src/hooks/redux'
 import { fetchSets } from '@src/store/reducers/Set/SetActions'
 import { ISet } from '@src/models/ISet'
 
+// Модалка с готовыми наборами
+
 export const SetList = () => {
-    const { setList, fetchLoading, fetchError } = useAppSelector((state) => state.set)
+    const { setList, fetchError } = useAppSelector((state) => state.set)
     const dispatch = useAppDispatch()
 
 
@@ -39,9 +41,10 @@ export const SetList = () => {
                     {setList && setList.length > 0 ?
                         setList.map((set: ISet) => (
                             <SetListItem key={set.id} item={set}></SetListItem>
-                        )) :
+                        ))
+                        :
                         (<>
-                            {!fetchError && (new Array(3).fill(1).map((_, i) => <SetListItemPlaceholder key={i} />))}
+                            {!fetchError && (new Array(5).fill(1).map((_, i) => <SetListItemPlaceholder key={i} />))}
                             {fetchError && fetchError}
                         </>)
                     }
